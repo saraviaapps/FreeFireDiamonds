@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FreeFireDiamonds_v2">
         <activity
+            android:name=".UpdateProfile"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

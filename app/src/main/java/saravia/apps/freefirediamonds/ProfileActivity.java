@@ -1,18 +1,25 @@
 package saravia.apps.freefirediamonds;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -57,6 +64,24 @@ public class ProfileActivity extends AppCompatActivity {
             Picasso.get().load(uri).into(view_image_in_image_view);
         });
         DatabaseReference databaseReference=firebaseDatabase.getReference(auth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserProfile profile = snapshot.getValue(UserProfile.class);
+                view_name.setText(profile.getUsername());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Failed to fetch", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        update_profile.setOnClickListener(v ->{
+            Intent intent = new Intent(ProfileActivity.this,UpdateProfile.class);
+            startActivity(intent);
+        });
         
 
 
