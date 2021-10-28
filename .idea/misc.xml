@@ -8,7 +8,10 @@
         <entry key="app/src/main/res/layout/activity_otp_authentication.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2210144927536232" />
         <entry key="app/src/main/res/layout/activity_set_profile.xml" value="0.2210144927536232" />
+        <entry key="app/src/main/res/layout/activity_update_profile.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/caht.xml" value="0.1933876811594203" />
         <entry key="app/src/main/res/layout/chat_fragment.xml" value="0.2210144927536232" />
+        <entry key="app/src/main/res/layout/chat_view_layout.xml" value="0.11481481481481481" />
         <entry key="app/src/main/res/layout/global_fragment.xml" value="0.2210144927536232" />
         <entry key="app/src/main/res/menu/menu_app.xml" value="0.25729166666666664" />
       </map>

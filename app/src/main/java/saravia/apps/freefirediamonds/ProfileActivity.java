@@ -76,14 +76,10 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed to fetch", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         update_profile.setOnClickListener(v ->{
             Intent intent = new Intent(ProfileActivity.this,UpdateProfile.class);
             startActivity(intent);
         });
-        
-
 
     }
 }

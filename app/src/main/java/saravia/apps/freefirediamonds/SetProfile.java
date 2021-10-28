@@ -137,7 +137,6 @@ public class SetProfile extends AppCompatActivity {
         userdata.put("image",image_uri_access_token);
         userdata.put("uid",auth.getUid());
         userdata.put("status","Online");
-        userdata.put("coins","0");
         reference.set(userdata).addOnSuccessListener(command -> {
             Toast.makeText(getApplicationContext(), "Data send success", Toast.LENGTH_SHORT).show();
         });
