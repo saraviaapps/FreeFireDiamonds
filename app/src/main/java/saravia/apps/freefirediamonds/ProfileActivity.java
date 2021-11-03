@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
@@ -78,8 +79,28 @@ public class ProfileActivity extends AppCompatActivity {
         });
         update_profile.setOnClickListener(v ->{
             Intent intent = new Intent(ProfileActivity.this,UpdateProfile.class);
+            intent.putExtra("name_user",view_name.getText().toString());
+
             startActivity(intent);
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        DocumentReference documentReference=firebaseFirestore.collection("UserData").document(auth.getUid());
+        documentReference.update("status","Online").addOnSuccessListener(command -> {
+
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DocumentReference documentReference=firebaseFirestore.collection("UserData").document(auth.getUid());
+        documentReference.update("status","Offline").addOnSuccessListener(command -> {
+
+        });
     }
 }

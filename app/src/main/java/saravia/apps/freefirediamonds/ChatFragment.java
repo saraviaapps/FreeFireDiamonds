@@ -1,5 +1,6 @@
 package saravia.apps.freefirediamonds;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class ChatFragment extends Fragment {
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
     private ImageView user_image;
-    private FirestoreRecyclerAdapter<FirebaseModel,NoteViewHolder> chat_Adapter;
+    FirestoreRecyclerAdapter<FirebaseModel,NoteViewHolder> chat_Adapter;
 
     @Nullable
     @Override
@@ -40,7 +41,7 @@ public class ChatFragment extends Fragment {
         auth=FirebaseAuth.getInstance();
         recyclerView =view.findViewById(R.id.recycle_view);
 
-        Query query=firebaseFirestore.collection("UserData");
+        Query query=firebaseFirestore.collection("UserData").whereNotEqualTo("uid",auth.getUid());
         FirestoreRecyclerOptions<FirebaseModel> all_user_name=new FirestoreRecyclerOptions.Builder<FirebaseModel>().setQuery(query,FirebaseModel.class).build();
 
         chat_Adapter= new FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>(all_user_name) {
@@ -59,7 +60,12 @@ public class ChatFragment extends Fragment {
                 }
 
                 noteViewHolder.itemView.setOnClickListener(v->{
-                    Toast.makeText(getActivity(), "Clicked user: "+firebaseModel.getName(), Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(getActivity(),PrivateChat.class);
+                    intent.putExtra("name",firebaseModel.getName());
+                    intent.putExtra("receiverUID",firebaseModel.getUid());
+                    intent.putExtra("imageURL",firebaseModel.getName());
+                    intent.putExtra("status",firebaseModel.getStatus());
+                    startActivity(intent);
                 });
             }
 

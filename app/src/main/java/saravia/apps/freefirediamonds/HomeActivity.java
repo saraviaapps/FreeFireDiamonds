@@ -13,6 +13,9 @@ import android.widget.TableLayout;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -21,6 +24,8 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private PageAdapter adapter;
     androidx.appcompat.widget.Toolbar toolbar;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -33,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
         tableLayout=findViewById(R.id.included);
         GLOBAL=findViewById(R.id.global_chat);
         CHAT=findViewById(R.id.personal_chat);
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        auth=FirebaseAuth.getInstance();
         setSupportActionBar(toolbar);
         adapter=new PageAdapter(getSupportFragmentManager(),tableLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -57,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tableLayout));
 
+
     }
 
     @Override
@@ -75,5 +83,24 @@ public class HomeActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        DocumentReference documentReference=firebaseFirestore.collection("UserData").document(auth.getUid());
+        documentReference.update("status","Online").addOnSuccessListener(command -> {
+
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DocumentReference documentReference=firebaseFirestore.collection("UserData").document(auth.getUid());
+        documentReference.update("status","Offline").addOnSuccessListener(command -> {
+
+        });
     }
 }
