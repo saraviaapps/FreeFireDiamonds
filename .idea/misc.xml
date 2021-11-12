@@ -17,6 +17,8 @@
         <entry key="app/src/main/res/layout/global_fragment.xml" value="0.2210144927536232" />
         <entry key="app/src/main/res/layout/receiver_chat_layout.xml" value="0.21693840579710144" />
         <entry key="app/src/main/res/layout/sender_chat_layout.xml" value="0.21693840579710144" />
+        <entry key="app/src/main/res/layout/view_message_recycle.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/view_user_image.xml" value="0.213768115942029" />
         <entry key="app/src/main/res/menu/menu_app.xml" value="0.25729166666666664" />
       </map>
     </option>

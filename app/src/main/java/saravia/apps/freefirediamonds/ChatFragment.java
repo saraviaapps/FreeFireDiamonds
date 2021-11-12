@@ -50,6 +50,7 @@ public class ChatFragment extends Fragment {
                 noteViewHolder.particular_user_name.setText(firebaseModel.getName());
                 String uri=firebaseModel.getImage();
                 Picasso.get().load(uri).into(user_image);
+                noteViewHolder.view_status.setTextSize(20);
                 if (firebaseModel.getStatus().equals("Online"))
                 {
                     noteViewHolder.view_status.setText(firebaseModel.getStatus());
@@ -63,7 +64,7 @@ public class ChatFragment extends Fragment {
                     Intent intent =new Intent(getActivity(),PrivateChat.class);
                     intent.putExtra("name",firebaseModel.getName());
                     intent.putExtra("receiverUID",firebaseModel.getUid());
-                    intent.putExtra("imageURL",firebaseModel.getName());
+                    intent.putExtra("imageURL",firebaseModel.getImage());
                     intent.putExtra("status",firebaseModel.getStatus());
                     startActivity(intent);
                 });

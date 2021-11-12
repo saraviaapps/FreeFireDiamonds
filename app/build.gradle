@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
     /*Firebase*/
 
     /*Other Repositories*/
